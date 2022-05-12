@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Магазин оптики</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link href="images/owico.PNG" rel="icon" type="image/png">
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+    <script src="scripts/scripts.js"></script>
+    <script src="https://kit.fontawesome.com/beb6f9a828.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+<header>
+    <div class="header">
+        <a class="logo" href="index">
+            <img src="images/ow.PNG" width="127" height="126">
+        </a>
+        <div class="navigation">
+            <a href="index">ГЛАВНАЯ</a>
+            <a href="diop">ОЧКИ С ДИОПТИРЯМИ</a>
+            <a href="sunsafe">СОЛЦНЕЗАЩИТНЫЕ ОЧКИ</a>
+            <a href="sale">РАСПРОДАЖА</a>
+            <a href="information">ИНФОРМАЦИЯ</a>
+        </div>
+    </div>
+</header>
+    
+    <div class="container2">
+        <div style="text-align:center">
+          <h2>Оформление заказа</h2>
+        </div>
+        <div class="row">
+
+          <div class="column2">
+              <form th:action="@{addOrder}"
+                    th:object="${newOrder}" method="POST">
+
+              <label for="country">Город</label>
+              <select id="country" name="country" th:field="*{city}">
+                <option th:value="Москва">Москва</option>
+                <option th:value="Санкт-Петербург">Санкт-Петербург</option>
+              </select>
+
+              <label for="subject">Впишите название понравившегося товара</label>
+              <textarea id="subject" th:field="*{description}" name="subject" placeholder="Пожалуйста впишите название товара" style="height:100px; font-family: Roboto;"></textarea>
+
+              <input type="submit" value="Submit">
+            </form>
+          </div>
+        </div>
+        <form th:action="@{logout}" method="GET">
+            <input type="submit" value="Выйти">
+        </form>
+
+    <div>
+        <table border="1">
+            <caption>Ваши заказы</caption>
+            <tr>
+                <th>Описание заказа</th>
+                <th>Город</th>
+            </tr>
+            <tr th:each ="order : ${orders}">
+                <td th:utext="${order.description}">...</td>
+                <td th:utext="${order.city}">...</td>
+            </tr>
+        </table>
+        <br>
+    </div>
+    </div>
+<footer>
+    <div class="name">
+        OPTICWORLD
+    </div>
+    <div class="me">Optic World — магазин брендовых очков <br> с 2011 года.<br> ТОВАРЫ ОПТИКИ НА ЛЮБОЙ ВКУС!</div>
+</footer>
+</body>
