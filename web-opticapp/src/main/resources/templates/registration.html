@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Магазин оптики</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link href="images/owico.PNG" rel="icon" type="image/png">
+  <link rel="stylesheet" type="text/css" href="styles/styles.css">
+  <script src="scripts/scripts.js"></script>
+  <script src="https://kit.fontawesome.com/beb6f9a828.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+<header>
+  <div class="header">
+    <a class="logo" href="index">
+      <img src="images/ow.PNG" width="127" height="126">
+    </a>
+    <div class="navigation">
+      <a href="index">ГЛАВНАЯ</a>
+      <a href="diop">ОЧКИ С ДИОПТИРЯМИ</a>
+      <a href="sunsafe">СОЛЦНЕЗАЩИТНЫЕ ОЧКИ</a>
+      <a href="sale">РАСПРОДАЖА</a>
+      <a href="information">ИНФОРМАЦИЯ</a>
+    </div>
+  </div>
+</header>
+
+<div class="container2">
+  <div style="text-align:center">
+    <h2>Регистрация</h2>
+    <p>Введите данные для регистрации</p>
+  </div>
+  <div class="row">
+    <div class="column2">
+      <form th:action="@{registration}"
+            th:object="${newUser}" method="POST">
+        <div th:if="${error}">
+          <div class="alert alert-danger" style="color: darkred">
+            Пользователь с такой почтой уже существует
+          </div>
+        </div>
+        <br>
+        <label for="fname">Имя</label>
+        <input type="text" id="fname" name="firstname" placeholder="Введите имя" th:field="*{name}">
+
+        <label for="lname">Фамилия</label>
+        <input type="text" id="lname" name="lastname" placeholder="Введите фамилию" th:field="*{surname}">
+
+        <label for="login">Почта</label>
+        <input type="text" id="login" name="login" placeholder="Введите почту" th:field="*{login}">
+
+        <label for="pswd">Пароль</label>
+        <input type="password" id="pswd" name="pswd" placeholder="Введите пароль" th:field="*{password}">
+
+        <input type="submit" value="Зарегистрироваться">
+      </form>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="name">
+    OPTICWORLD
+  </div>
+  <div class="me">Optic World — магазин брендовых очков <br> с 2011 года.<br> ТОВАРЫ ОПТИКИ НА ЛЮБОЙ ВКУС!</div>
+</footer>
+</body>
